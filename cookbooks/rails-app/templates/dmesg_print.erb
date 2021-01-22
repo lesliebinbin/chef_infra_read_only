@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require 'rest-client'
+require 'json'
+result = `dmesg --read-clear`.chomp
+unless result.empty?
+  puts(RestClient.post('http://localhost:3000/dmesg',
+                       { dmesg: result }.to_json,
+                       { content_type: :json, accept: :json }))
+end

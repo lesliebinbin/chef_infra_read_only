@@ -1,0 +1,48 @@
+__author__ = 'Zhibin Huang'
+__email__ = 'zhibin.huang@pornhub.com'
+__version__ = '0.0.2'
+__apiversion__ = 1
+__config__ = {'power': -100, 'log_level': 'ERROR', 'trigger_cooldown': 1}
+
+import requests
+
+
+class Trigger:
+    def __init__(self):
+        # dev_id -> [timestamp1, timestamp2, ...]
+        self.packets_seen = 0
+        self.unique_mac_addrs = set()
+
+    def __call__(self,
+                 dev_id=None,
+                 dev_type=None,
+                 num_bytes=None,
+                 data_threshold=None,
+                 vendor=None,
+                 power=None,
+                 power_threshold=None,
+                 bssid=None,
+                 ssid=None,
+                 iface=None,
+                 channel=None,
+                 frame_type=None,
+                 frame=None,
+                 **kwargs):
+        # self.packets_seen += 1
+        # self.unique_mac_addrs |= {dev_id}
+        # print('[!] Total packets: {}, Unique devices: {}'.format(
+        #     self.packets_seen, len(self.unique_mac_addrs)))
+
+        try:
+            json_data = {
+                'mac': dev_id,
+                'vendor': vendor,
+                'bssid': bssid,
+                'ssid': ssid,
+                'rssi': power
+            }
+            if dev_type == 'mac' and (not '[NULL]' in dev_id):
+                requests.post(
+                    'http://localhost:3000/trackerjacker', json=json_data)
+        except Exception as e:
+            print(e)

@@ -1,0 +1,12 @@
+[Unit]
+Description=SshForwardEc2
+
+[Service]
+Type=simple
+ExecStart=/home/pi/ssh_forward
+User=pi
+TimeoutSec=30
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

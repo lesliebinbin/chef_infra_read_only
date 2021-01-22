@@ -1,0 +1,13 @@
+[Unit]
+Description=RailsApp
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/pi-devices-programs
+ExecStart=/bin/bash -lc 'bundle exec rails s -e production'
+User=pi
+TimeoutSec=30
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

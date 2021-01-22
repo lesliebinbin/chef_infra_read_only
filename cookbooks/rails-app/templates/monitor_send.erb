@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'rest-client'
+require 'json'
+`/home/pi/monitor.sh  > /home/pi/pi_monitor.txt 2>&1`
+device_id = `cat /home/pi/device-id`.chomp
+device_name = `hostname`.chomp
+metrics = `cat /home/pi/pi_monitor.txt`.chomp
+RestClient.post(
+'https://outlook.office.com/webhook/87ce2f0e-4498-415c-a8f5-3ff214c153e5@cbfeb581-bd3a-4da7-ac21-9d17fa7cc6b3/IncomingWebhook/c5bde4701a7f48a08c9bf28cb383ea9c/5aef9cad-8a78-4c18-9e70-4ffe7f6bb047',
+{ text: "devicd_id: #{device_id}, \ndevice_name: #{device_name}, \ninfo: #{metrics}" }.to_json,
+{ content_type: :json, accept: :json }
+)

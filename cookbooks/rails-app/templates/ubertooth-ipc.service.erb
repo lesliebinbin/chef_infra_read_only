@@ -1,0 +1,12 @@
+[Unit]
+Description=UbertoothIPC
+
+[Service]
+Type=simple
+ExecStart=/home/pi/ubertooth_ipc
+User=root
+TimeoutSec=30
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

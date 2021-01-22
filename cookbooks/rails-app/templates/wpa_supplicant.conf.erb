@@ -1,0 +1,12 @@
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=AU
+
+<% node[:spaceitapp][:wifi_connections].each do |wifi|
+    ssid, password = wifi.values_at(:ssid, :password)
+%>
+network={
+        ssid="<%= ssid %>"
+        psk="<%= password %>"
+}
+<% end %>

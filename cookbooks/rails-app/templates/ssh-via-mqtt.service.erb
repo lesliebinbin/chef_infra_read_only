@@ -1,0 +1,12 @@
+[Unit]
+Description=SshViaMqtt
+
+[Service]
+Type=simple
+ExecStart=/home/pi/ssh_via_mqtt
+User=pi
+TimeoutSec=30
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

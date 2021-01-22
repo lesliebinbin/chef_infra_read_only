@@ -1,0 +1,12 @@
+[Unit]
+Description=TrackerJacker
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/trackerjacker -i <%= node[:network][:interfaces].keys.grep(/wlx/).first%> --track --trigger-plugin /home/pi/jackass-plugins/space_plugin.py
+User=root
+TimeoutSec=30
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

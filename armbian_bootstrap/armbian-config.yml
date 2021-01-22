@@ -1,0 +1,60 @@
+nodes:
+  - name: 'issac-level01-index03'
+    ip: '192.168.43.3'
+    user: 'pi'
+    password: 'spaceplatform'
+    recipes: 'recipe[mychef-client],recipe[rails-app],recipe[cpu::governor],recipe[jackertracker]'
+    attrs:
+      cpu:
+        governor: 'powersave'
+      spaceitapp:
+        host: 'issac.building.level01.index.03'
+        family: 'BBH'
+        device: 'level02_index03'
+        location: 'level02'
+        scantime: 20
+        find3_host: 'http://localhost:3000'
+        remote_ssh:
+          host: 'ec2-13-210-204-62.ap-southeast-2.compute.amazonaws.com'
+          user: 'ubuntu'
+          port: 43236
+          pem_template: 'keys-pem.erb'
+        wifi_connections:
+          - ssid: 'Zhibin'
+            password: 'ZhibinHuang'
+          - ssid: 'TheCapital-L3'
+            password: 'BNE-3conomy$'
+          - ssid: 'The SPACE'
+            password: 'd SPACE 88'
+          - ssid: 'TheCapital-L4'
+            password: 'BNE-3conomy$'
+
+  - name: 'issac-level01-index04'
+    ip: '192.168.43.132'
+    user: 'pi'
+    password: 'spaceplatform'
+    recipes: 'recipe[mychef-client],recipe[rails-app],recipe[cpu::governor],recipe[jackertracker]'
+    attrs:
+      cpu:
+        governor: 'powersave'
+      spaceitapp:
+        host: 'issac.building.level01.index.04'
+        family: 'BBH'
+        device: 'level02_index04'
+        location: 'level02'
+        scantime: 20
+        find3_host: 'http://localhost:3000'
+        remote_ssh:
+          host: 'ec2-13-210-204-62.ap-southeast-2.compute.amazonaws.com'
+          user: 'ubuntu'
+          port: 43236
+          pem_template: 'keys-pem.erb'
+        wifi_connections:
+          - ssid: 'Zhibin'
+            password: 'ZhibinHuang'
+          - ssid: 'TheCapital-L3'
+            password: 'BNE-3conomy$'
+          - ssid: 'The SPACE'
+            password: 'd SPACE 88'
+          - ssid: 'TheCapital-L4'
+            password: 'BNE-3conomy$'

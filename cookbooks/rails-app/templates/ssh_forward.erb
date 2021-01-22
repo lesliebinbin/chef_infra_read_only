@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'net/ssh'
+r_host = '<%= node[:spaceitapp][:remote_ssh][:host] %>'
+r_user = '<%= node[:spaceitapp][:remote_ssh][:user] %>'
+r_port = <%= node[:spaceitapp][:remote_ssh][:port] %>
+# by default it can only forward to remote localhost, if want to bind to 0.0.0.0 make sure sshd_config GatewayForward yes
+ssh = Net::SSH.start(
+  r_host,
+  r_user,
+  { keys: '/home/pi/keys.pem' }
+)
+ssh.forward.remote(22, 'localhost', r_port)
+ssh.loop { true }

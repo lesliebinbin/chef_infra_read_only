@@ -1,0 +1,12 @@
+[Unit]
+Description=Find3Cli
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/find3-cli-scanner -i <%= node['network']['interfaces'].keys.grep(/wlx/).first%> -device <%= node[:spaceitapp][:device] %> -family <%= node[:spaceitapp][:family] %> -server <%= node[:spaceitapp][:find3_host] %> -scantime <%= node[:spaceitapp][:scantime] %> -wifi -forever
+User=root
+TimeoutSec=30
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

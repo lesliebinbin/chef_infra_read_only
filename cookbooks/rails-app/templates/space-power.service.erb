@@ -1,0 +1,12 @@
+[Unit]
+Description=WifiManage
+
+[Service]
+Type=simple
+ExecStart=/sbin/iwconfig wlan0 power off
+User=root
+TimeoutSec=30
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target
